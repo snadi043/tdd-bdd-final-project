@@ -134,3 +134,23 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(len(all_products), 1)
         self.assertEqual(all_products[0].id, initial_id)
         self.assertEqual(all_products[0].description, "A blue hat")
+
+
+    def test_delete_a_product(self):
+        """It should Delete a product in the database"""
+        product = ProductFactory()
+        product.create()
+        self.assertEqual(len(Product.all()), 1)
+        product.delete()
+        self.assertEqual(len(Product.all()), 0)
+
+
+    def test_to_list_all_prodcuts(self):
+        """It should list all the products in the database"""
+        products = Product.all()
+        self.assertEqual(products, [])
+        for _ in range(5):
+            product = ProductFactory()
+            product.create()
+        products = Product.all()
+        self.assertEqual(len(products), 5)
