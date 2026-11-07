@@ -101,6 +101,16 @@ def create_products():
 #
 # PLACE YOUR CODE TO LIST ALL PRODUCTS HERE
 #
+@app.route("/products/<product_id>", methods=["GET"])
+def get_products(self, id):
+    """
+    Fetches a Product
+    This endpoint will get a Product from the database based on the "id".
+    """
+    app.logger.info("Request to fetch a Product...")
+    check_content_type("application/json")
+
+    data = request
 
 ######################################################################
 # R E A D   A   P R O D U C T
